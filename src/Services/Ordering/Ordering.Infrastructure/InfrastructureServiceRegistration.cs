@@ -26,7 +26,7 @@ namespace Ordering.Infrastructure
             services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.Configure<EmailSettings>(c => configuration.GetSection("EmailSettings"));
-            services.AddScoped<IEmailService, EmailService>();
+            services.AddTransient<IEmailService, EmailService>();
             return services;
         }
     }
