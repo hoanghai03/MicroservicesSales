@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Ordering.Application.Behaviours;
+using Ordering.Application.Features.Orders.Commands.CheckoutOrder;
 
 namespace Ordering.Application
 {
@@ -17,11 +18,12 @@ namespace Ordering.Application
         {
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
+            //services.AddScoped(typeof(IRequestHandler<,>), typeof(CheckoutOrderCommandHandler));
 
             return services;
         }

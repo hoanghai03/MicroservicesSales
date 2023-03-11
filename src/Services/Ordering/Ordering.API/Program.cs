@@ -1,11 +1,16 @@
+using MediatR;
 using Ordering.API.Extensions;
 using Ordering.Application;
+using Ordering.Application.Contracts.Infrastructure;
 using Ordering.Infrastructure;
+using Ordering.Infrastructure.Mail;
 using Ordering.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddMediatR(typeof(Program));
+
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddControllers();
