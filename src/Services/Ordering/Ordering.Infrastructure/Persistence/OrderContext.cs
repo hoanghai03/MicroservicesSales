@@ -15,7 +15,7 @@ namespace Ordering.Infrastructure.Persistence
 
         public DbSet<Order> Orders { get; set; }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<EntityBase>())
             {
@@ -24,10 +24,13 @@ namespace Ordering.Infrastructure.Persistence
                     case EntityState.Added:
                         entry.Entity.CreatedDate = DateTime.Now;
                         entry.Entity.CreatedBy = "Hai dep trai";
+                        entry.Entity.LastModifiedBy = "test";
                         break;                    
                     case EntityState.Modified:
+                        entry.Entity.CreatedDate = DateTime.Now;
                         entry.Entity.LastModifiedDate = DateTime.Now;
                         entry.Entity.LastModifiedBy = "Hai dep trai";
+                        entry.Entity.LastModifiedBy = "test";
                         break;
                 }
             }

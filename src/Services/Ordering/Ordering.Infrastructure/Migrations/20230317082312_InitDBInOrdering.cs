@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Ordering.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDatabaseNew : Migration
+    public partial class InitDBInOrdering : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

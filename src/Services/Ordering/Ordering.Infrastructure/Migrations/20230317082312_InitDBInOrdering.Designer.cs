@@ -12,8 +12,8 @@ using Ordering.Infrastructure.Persistence;
 namespace Ordering.Infrastructure.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20230311135508_InitDatabaseNew")]
-    partial class InitDatabaseNew
+    [Migration("20230317082312_InitDBInOrdering")]
+    partial class InitDBInOrdering
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

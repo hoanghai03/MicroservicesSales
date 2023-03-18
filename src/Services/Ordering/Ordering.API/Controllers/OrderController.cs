@@ -25,7 +25,7 @@ namespace Ordering.API.Controllers
         public async Task<ActionResult<IEnumerable<OrdersVm>>> GetOrdersByUserName(string userName)
         {
             var query = new GetOrderListQuery(userName);
-            var orders = _mediator.Send(query);
+            var orders = await _mediator.Send(query);
             return Ok(orders);
         }
 
@@ -50,6 +50,7 @@ namespace Ordering.API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
+        [HttpDelete]
         public async Task<ActionResult> DeleteOrder(int id)
         {
             var command = new DeleteOrderCommand() { Id = id};
