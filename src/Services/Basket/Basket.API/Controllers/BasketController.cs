@@ -71,7 +71,7 @@ namespace Basket.API.Controllers
                 return BadRequest();
             }
             // gửi checkout cho rabbitMQ
-            var eventMessage = _mapper.Map<BasketCheckoutEvent>(basket);
+            var eventMessage = _mapper.Map<BasketCheckoutEvent>(basketCheckout);
             eventMessage.TotalPrice = basket.TotalPrice;
             await _publishEndpoint.Publish<BasketCheckoutEvent>(eventMessage);
 

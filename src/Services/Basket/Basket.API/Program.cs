@@ -30,6 +30,8 @@ builder.Services.AddMassTransit(config =>
     });
 });
 
+builder.Services.AddMassTransitHostedService();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers();

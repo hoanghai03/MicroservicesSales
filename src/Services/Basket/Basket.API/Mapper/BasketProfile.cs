@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Basket.API.Entities;
 using EventBus.Messages.Events;
 
 namespace Basket.API.Mapper
@@ -7,7 +8,7 @@ namespace Basket.API.Mapper
     {
         public BasketProfile()
         {
-            CreateMap<BasketProfile,BasketCheckoutEvent>().ReverseMap();
+            CreateMap<BasketCheckout,BasketCheckoutEvent>().ReverseMap();
         }
     }
 }
