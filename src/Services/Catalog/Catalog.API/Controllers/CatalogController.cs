@@ -27,6 +27,22 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
+        [HttpPost]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
+        {
+            await _repository.CreateProduct(product);
+            return CreatedAtRoute("GetProduct",new {id = product.Id},product);
+        }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Product>> UpdateProduct([FromBody] Product product)
+        {
+            var res = await _repository.UpdateProductAsync(product);
+            return Ok(res);
+        }
+
         [HttpGet("{id:length(24)}",Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
@@ -39,6 +55,15 @@ namespace Catalog.API.Controllers
                 return NotFound();
             }
             return Ok(product);
+        }
+
+
+        [HttpDelete("{id:length(24)}")]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Product>> DeleteProductAsync(string id)
+        {
+           var res =  await _repository.DeleteProductAsync(id);
+            return Ok(res);
         }
 
         [Route("[action]/name")]
@@ -59,28 +84,5 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
-        [HttpPost]
-        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
-        {
-            await _repository.CreateProduct(product);
-            return CreatedAtRoute("GetProduct",new {id = product.Id},product);
-        }
-
-        [HttpPut]
-        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Product>> UpdateProduct([FromBody] Product product)
-        {
-            var res = await _repository.UpdateProductAsync(product);
-            return Ok(res);
-        }
-
-        [HttpDelete("{id:length(24)}")]
-        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Product>> DeleteProductAsync(string id)
-        {
-           var res =  await _repository.DeleteProductAsync(id);
-            return Ok(res);
-        }
     }
 }
