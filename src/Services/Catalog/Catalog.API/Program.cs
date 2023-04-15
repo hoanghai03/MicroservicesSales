@@ -1,9 +1,13 @@
-using Catalog.API.Data;
+﻿using Catalog.API.Data;
 using Catalog.API.Repositories;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+logger.Info("bắt đầu chạy hehe");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
